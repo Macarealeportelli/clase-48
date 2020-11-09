@@ -38,7 +38,7 @@ const generarGrilla = (filas, columnas, items) => {
 
 // console.log(generarGrilla(6, 6, frutas))
 
-const crearGrilla=()=>{
+const mostrarGrilla=()=>{
 
     if (seleccionaDificultad === 'facil'){
         generarGrilla(10,10,frutas)
@@ -52,4 +52,5 @@ const crearGrilla=()=>{
 
 }
 
-crearGrilla()
+mostrarGrilla()
+
