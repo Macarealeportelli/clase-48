@@ -108,3 +108,7 @@ nuevoJuego.onclick = () =>{
     mostrarGrilla()
 
 }
+
+reiniciarJuego.onclick=()=>{
+    mostrarGrilla()
+}
