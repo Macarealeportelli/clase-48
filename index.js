@@ -29,7 +29,7 @@ const generarGrilla = (filas, columnas, items) => {
 
         for (let j = 0; j < columnas; j++) {
             grillaDeFrutas[i][j] = items[obtenerNumeroAlAzar(items)]
-            grilla.innerHTML += `<div data-x=${i} data-y=${j}>${grillaDeFrutas[i][j]}</div>`
+            grilla.innerHTML += `<div data-x=${i} data-y=${j} id="celda">${grillaDeFrutas[i][j]}</div>`
         }
 
     }
@@ -75,9 +75,11 @@ reiniciarJuego.onclick = () => {
 
 //Buscar Matches
 
+const celdas = document.querySelectorAll('#celda')
+
 buscarMatches.onclick=()=>{
  let arrayFilas = []
- let arrayColumnas = []
+let arrayColumnas = []
 
     for (let i = 0; i < grillaDeFrutas.length; i++) {
         for (let j = 0; j < grillaDeFrutas[i].length; j++) {
@@ -86,27 +88,47 @@ buscarMatches.onclick=()=>{
                 console.log(grillaDeFrutas[i][j], grillaDeFrutas[i][j+1], grillaDeFrutas[i][j+2])
                 arrayFilas.push(grillaDeFrutas[i][j],  grillaDeFrutas[i][j+1], grillaDeFrutas[i][j+2])
                 console.log(arrayFilas)
-                if(grilla.dataset.x === `${i}`){
-                    grilla.classList.add('matchFila')
+                for(let celda of celdas){
+                    if(celda.dataset.x === `${i}` && celda.dataset.y === `${j}`){
+                        celda.classList.add('matchFila')
+                    } 
+                    if(celda.dataset.x === `${i}` && celda.dataset.y === `${j+1}`){
+                        celda.classList.add('matchFila')
+                    } 
+                    if(celda.dataset.x === `${i}` && celda.dataset.y === `${j+2}`){
+                        celda.classList.add('matchFila')
+                    } 
                 }
+                
             }
             
         }
         
     }
 
-    // for (let i = 0; i < grillaDeFrutas.length; i++) {
-    //     for (let j = 0; j < grillaDeFrutas[i].length; j++) {
+    for (let i = 0; i < grillaDeFrutas.length; i++) {
+        for (let j = 0; j < grillaDeFrutas[i].length; j++) {
           
-    //         if (grillaDeFrutas[i + 1] && grillaDeFrutas[i + 2] && grillaDeFrutas[i][j] === grillaDeFrutas[i+1][j] && grillaDeFrutas[i+2][j]===grillaDeFrutas[i][j]){
-    //             console.log(grillaDeFrutas[i][j], grillaDeFrutas[i+1][j], grillaDeFrutas[i+2][j])
-    //             arrayColumnas.push(grillaDeFrutas[i][j], grillaDeFrutas[i+1][j], grillaDeFrutas[i+2][j])
-    //             console.log(arrayColumnas)
-    //         }
+            if (grillaDeFrutas[i + 1] && grillaDeFrutas[i + 2] && grillaDeFrutas[i][j] === grillaDeFrutas[i+1][j] && grillaDeFrutas[i+2][j]===grillaDeFrutas[i][j]){
+                console.log(grillaDeFrutas[i][j], grillaDeFrutas[i+1][j], grillaDeFrutas[i+2][j])
+                arrayColumnas.push(grillaDeFrutas[i][j], grillaDeFrutas[i+1][j], grillaDeFrutas[i+2][j])
+                console.log(arrayColumnas)
+                for(let celda of celdas){
+                    if(celda.dataset.x === `${i}` && celda.dataset.y === `${j}`){
+                        celda.classList.add('matchColumna')
+                    } 
+                    if(celda.dataset.x === `${i+1}` && celda.dataset.y === `${j}`){
+                        celda.classList.add('matchColumna')
+                    } 
+                    if(celda.dataset.x === `${i+2}` && celda.dataset.y === `${j}`){
+                        celda.classList.add('matchColumna')
+                    } 
+                }
+            }
             
-    //     }
+        }
         
-    // }
+    }
 
 
 
