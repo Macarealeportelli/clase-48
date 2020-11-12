@@ -75,11 +75,13 @@ reiniciarJuego.onclick = () => {
 
 //Buscar Matches
 
-const celdas = document.querySelectorAll('#celda')
+
 
 buscarMatches.onclick=()=>{
+    const celdas = document.querySelectorAll('#celda')
+
  let arrayFilas = []
-let arrayColumnas = []
+ let arrayColumnas = []
 
     for (let i = 0; i < grillaDeFrutas.length; i++) {
         for (let j = 0; j < grillaDeFrutas[i].length; j++) {
